@@ -1,0 +1,40 @@
+{
+  "name": "touch-music",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app/main.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "electron": "^1.8.3",
+    "jsdom": "^11.6.2",
+    "open-korean-text-node": "^2.0.0",
+    "puppeteer": "^1.1.1",
+    "request": "^2.85.0"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0"
+  },
+  "scripts": {
+    "lint": "eslint app lib test",
+    "lint:fix": "eslint app lib test --fix",
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Astro36/TouchMusic.git"
+  },
+  "contributors": [
+    "SJ Park <astr36@naver.com>",
+    "BJ Kim <tiger00@hanmail.net>",
+    "SY Sim <simssy2205@gmail.com>"
+  ],
+  "license": "None",
+  "bugs": {
+    "url": "https://github.com/Astro36/TouchMusic/issues"
+  },
+  "homepage": "https://github.com/Astro36/TouchMusic#readme"
+}
