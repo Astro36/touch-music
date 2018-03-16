@@ -14,24 +14,27 @@ from bs4 import BeautifulSoup
 def get_song_detail(song_id):
     print(song_id)
     url = 'http://www.melon.com/song/detail.htm?songId={}'.format(song_id)
-    req = requests.get(url, headers={
-                       'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linu…) Gecko/20100101 Firefox/59.0'})
-    html = req.text
-    soup = BeautifulSoup(html, 'html.parser')
-    element_artist = soup.select_one('.info > .artist > .artist_name')
-    element_lyric = soup.select_one('.wrap_lyric > .lyric')
-    element_title = soup.select_one('.info > .song_name')
-    if element_artist is not None \
-            and element_lyric is not None \
-            and element_title is not None:
-        artist = element_artist.get('title').strip()
-        lyric = element_lyric.get_text('\n', strip=True)
-        title = element_title.get_text().replace(u'곡명', '').strip()
-        return {
-            'artist': artist,
-            'lyric': lyric,
-            'title': title
-        }
+    try:
+        req = requests.get(url, headers={
+                        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linu…) Gecko/20100101 Firefox/59.0'})
+        html = req.text
+        soup = BeautifulSoup(html, 'html.parser')
+        element_artist = soup.select_one('.info > .artist > .artist_name')
+        element_lyric = soup.select_one('.wrap_lyric > .lyric')
+        element_title = soup.select_one('.info > .song_name')
+        if element_artist is not None \
+                and element_lyric is not None \
+                and element_title is not None:
+            artist = element_artist.get('title').strip()
+            lyric = element_lyric.get_text('\n', strip=True)
+            title = element_title.get_text().replace(u'곡명', '').strip()
+            return {
+                'artist': artist,
+                'lyric': lyric,
+                'title': title
+            }
+    except:
+        print('Error: song_id = {}'.format(song_id))
 
 
 def get_song_ids(url):
@@ -54,21 +57,33 @@ def get_song_ids(url):
 
 
 if __name__ == '__main__':
+    def get_gerne_id(year):
+        if year >= 2017:
+            return 'GN0000'
+        elif year >= 2009:
+            return 'DP0000'
+        elif year >= 2006:
+            return 'CL0000'
+        else:
+            return 'KPOP'
+
     def get_url(date_delta):
         start_date = datetime.datetime(
             2018, 3, 5) - datetime.timedelta(days=date_delta)
         end_date = datetime.datetime(
             2018, 3, 11) - datetime.timedelta(days=date_delta)
-        return 'http://www.melon.com/chart/search/list.htm?chartType=WE&age=2010&year={}&mon={}&day={}^{}&classCd=GN0000&startDay={}&endDay={}&moved=Y'.format(
+        return 'http://www.melon.com/chart/search/list.htm?chartType=WE&age={}&year={}&mon={}&day={}^{}&classCd={}&startDay={}&endDay={}&moved=Y'.format(
+            (int(start_date.strftime("%Y")) // 10) * 10,
             start_date.strftime("%Y"),
             start_date.strftime("%m"),
             start_date.strftime("%Y%m%d"),
             end_date.strftime("%Y%m%d"),
+            get_gerne_id(int(start_date.strftime("%Y"))),
             start_date.strftime("%Y%m%d"),
             end_date.strftime("%Y%m%d"),
         )
     output_path = os.getcwd()
-    urls = map(get_url, range(0, 365, 7))
+    urls = map(get_url, range(0, 3650, 7))
     pool = multiprocessing.Pool(multiprocessing.cpu_count())
     song_ids = list(set(sum(pool.map(get_song_ids, urls), [])))
     f = open(u'{}/song_ids.json'.format(output_path), 'w')
