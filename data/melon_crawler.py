@@ -16,7 +16,7 @@ def get_song_detail(song_id):
     url = 'http://www.melon.com/song/detail.htm?songId={}'.format(song_id)
     try:
         req = requests.get(url, headers={
-                        'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linu…) Gecko/20100101 Firefox/59.0'})
+            'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linu…) Gecko/20100101 Firefox/59.0'})
         html = req.text
         soup = BeautifulSoup(html, 'html.parser')
         element_artist = soup.select_one('.info > .artist > .artist_name')
@@ -27,7 +27,7 @@ def get_song_detail(song_id):
                 and element_title is not None:
             artist = element_artist.get('title').strip()
             lyric = element_lyric.get_text('\n', strip=True)
-            title = element_title.get_text().replace(u'곡명', '').strip()
+            title = element_title.get_text().replace(u'곡명', '').replace(u'19금', '').strip()
             return {
                 'artist': artist,
                 'lyric': lyric,
@@ -83,13 +83,14 @@ if __name__ == '__main__':
             end_date.strftime("%Y%m%d"),
         )
     output_path = os.getcwd()
-    urls = map(get_url, range(0, 3650, 7))
+    urls = map(get_url, range(0, 365 * 5, 7))
     pool = multiprocessing.Pool(multiprocessing.cpu_count())
     song_ids = list(set(sum(pool.map(get_song_ids, urls), [])))
     f = open(u'{}/song_ids.json'.format(output_path), 'w')
     f.write(json.dumps(song_ids, indent=4))
     f.close()
-    songs = pool.map(get_song_detail, song_ids)
+    songs = sorted(filter(None, pool.map(get_song_detail, song_ids)),
+                   key=lambda song: song['title'])
     f = open(u'{}/songs.json'.format(output_path), 'w')
     f.write(json.dumps(songs, indent=4, ensure_ascii=False).encode('utf8'))
     f.close()
