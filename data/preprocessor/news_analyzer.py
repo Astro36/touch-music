@@ -1,15 +1,14 @@
 #!/usr/bin/python
 #-*- coding: utf-8 -*-
 
-import logging
+import codecs
 import json
-import re
 from konlpy.tag import Twitter
 
 
 if __name__ == '__main__':
     twitter = Twitter()
-    f = open('../news.txt', 'r')
+    f = codecs.open('../news.txt', encoding='utf-8', mode='r')
     sentences = f.read().split('\n')
     words = []
     for sentence in sentences:
