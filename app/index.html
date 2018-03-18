@@ -14,11 +14,12 @@
 
 <body>
   <div id="root" class="card-panel row z-depth-2 grey lighten-5">
-    <header class="grey lighten-2" id="header-container">
-      <i id="minimize" class="material-icons header-button grey-text text-darken-4">remove</i>
-      <i id="close" class="material-icons header-button grey-text text-darken-4">clear</i>
-    </header>
   </div>
+
+  <header class="grey lighten-5" id="header-container">
+    <i id="minimize" class="material-icons header-button grey-text text-darken-2">remove</i>
+    <i id="close" class="material-icons header-button grey-text text-darken-2">clear</i>
+  </header>
   <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
   <script type="text/javascript">
@@ -28,7 +29,7 @@
     const win = remote.getCurrentWindow();
 
     $(document).ready(() => {
-      $('#root').load('./mindmap.html');
+      $('#root').load('./search.html');
       $('#close').click(() => {
         win.close();
       });
