@@ -20,6 +20,7 @@
 </style>
 
 <div id="mind-field">
+  <canvas id="canvas"></canvas>
   <a id="main-word" class="child z-depth-0 btn-floating btn-large orange pulse">
     단어
   </a>
@@ -33,24 +34,53 @@
   let i = 0;
   for (const item of list) {
     const html = `<a id="item-${item.name}" class="child z-depth-3 waves-effect waves-light btn btn-floating btn-large blue">${item.name}</a>`;
+    const line = `<a id="line-${item.name}" style="background-color: black;"></a>`;
     field.append(html);
+    field.append(line);
 
     const listener = i => function () {
-      const unit = $('#root').height() / 4;
-      const coord = getCoord(unit + Math.random() * (unit / 3), 60 * i + Math.random() * 30);
-
+      const unit = $('#root').height() / 2;
+      const coord = getCoord(unit / 2 + Math.random() * (unit / 6), 60 * i + Math.random() * 30);
 
       const element = $(`#item-${item.name}`);
+      const line = $(`#line-${item.name}`);
       element.offset({
-        top: $('#root').height() / 2 + coord.x,
-        left: $('#root').width() / 2 + coord.y,
+        top: unit + coord.x,
+        left: unit + coord.y,
       });
+      setLine(line, unit, unit, unit + coord.y, unit + coord.x)
     };
 
     $(window).resize(listener(i));
 
     listener(i)();
     i++;
+  }
+
+  function setLine(element, x1, y1, x2, y2) {
+    var a = x1 - x2,
+        b = y1 - y2,
+        c = Math.sqrt(a * a + b * b);
+
+    var sx = (x1 + x2) / 2,
+        sy = (y1 + y2) / 2;
+
+    var x = sx - c / 2,
+        y = sy;
+
+    x += 32
+    y += 32
+
+    var alpha = Math.PI - Math.atan2(-b, a);
+
+    var styles = 'border: 1px solid black; '
+               + 'width: ' + c + 'px; '
+               + 'height: 0px; '
+               + '-webkit-transform: rotate(' + alpha + 'rad); '
+               + 'position: absolute; '
+               + 'top: ' + y + 'px; '
+               + 'left: ' + x + 'px; ';
+    element.attr('style', styles);
   }
 
   function getCoord(radius, angle) {
