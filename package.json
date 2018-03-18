@@ -9,14 +9,10 @@
   "dependencies": {
     "electron": "^1.8.4",
     "jsdom": "^11.6.2",
-<<<<<<< HEAD
     "materialize-css": "^0.100.2",
-    "open-korean-text-node": "^2.0.0",
-    "puppeteer": "^1.1.1",
-=======
     "puppeteer": "^1.2.0",
->>>>>>> 2cfd0040f45e1e87c48b95a9ac5e8a9093fab35d
-    "request": "^2.85.0"
+    "request": "^2.85.0",
+    "tsv": "^0.2.0"
   },
   "devDependencies": {
     "eslint": "^4.19.0",
@@ -37,7 +33,7 @@
     "BJ Kim <tiger00@hanmail.net>",
     "SY Sim <simssy2205@gmail.com>"
   ],
-  "license": "None",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/Astro36/TouchMusic/issues"
   },
