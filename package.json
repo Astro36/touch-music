@@ -7,15 +7,19 @@
     "lib": "lib"
   },
   "dependencies": {
-    "electron": "^1.8.3",
+    "electron": "^1.8.4",
     "jsdom": "^11.6.2",
+<<<<<<< HEAD
     "materialize-css": "^0.100.2",
     "open-korean-text-node": "^2.0.0",
     "puppeteer": "^1.1.1",
+=======
+    "puppeteer": "^1.2.0",
+>>>>>>> 2cfd0040f45e1e87c48b95a9ac5e8a9093fab35d
     "request": "^2.85.0"
   },
   "devDependencies": {
-    "eslint": "^4.18.2",
+    "eslint": "^4.19.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.9.0"
   },

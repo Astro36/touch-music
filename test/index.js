@@ -1,7 +1,10 @@
+const fs = require('fs');
+const path = require('path');
+
 const { SongAnalyzer, SongList } = require('../lib');
 
 (async () => {
-  const songs = await SongList.fromDailyChart();
+  const songs = SongList.fromJSONFile(path.join(__dirname, '../data/melon_songs.json'));
   const songData = await SongAnalyzer.run(songs);
-  console.log(songData);
+  fs.writeFileSync(path.join(__dirname, '../data/melon_songs.analyzed.json'), JSON.stringify(songData, null, 4));
 })();
