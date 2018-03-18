@@ -1,0 +1,69 @@
+#root {
+  -webkit-app-region: drag;
+  -webkit-user-select: none;
+
+  width: calc(100vw - 16px);
+  height: calc(100vh - 16px);
+
+  margin: 8px;
+
+  overflow: hidden;
+}
+
+#search-bar {
+  -webkit-app-region: no-drag;
+
+  width: calc(50vw - 16px);
+  height: 48px;
+
+  margin: auto;
+  margin-top: calc(50vh - 24px - 16px);
+}
+
+#search-button {
+  float: right;
+
+  line-height: 48px;
+
+  margin-right: 8px;
+}
+
+#search-input {
+  width: calc(100% - 48px);
+  height: 48px;
+
+  line-height: 48px;
+
+  position: absolute;
+
+  margin: 0px;
+  margin-left: 8px;
+
+  border: none;
+}
+
+#header-container {
+  -webkit-app-region: no-drag;
+
+  position: absolute;
+
+  top: 0px;
+  right: 0px;
+
+  margin: 16px;
+}
+
+#scroll {
+  overflow-x: scroll;
+}
+
+.header-button {
+  transform: scale(1.0, 1.0);
+  cursor: pointer;
+
+  transition: transform 0.25s;
+}
+
+.header-button:hover {
+  transform: scale(1.5, 1.5);
+}

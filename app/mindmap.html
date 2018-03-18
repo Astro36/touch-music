@@ -11,13 +11,8 @@
   </head>
   <body>
     <div id="root" class="card-panel row z-depth-2 grey lighten-5">
-      <!-- screen1 -->
-      <div id="screen1">
-        <div id="search-bar" class="card input-field z-depth-2">
-          <input id="search-input" type="text" class="remove-input-styled"></input>
-          <i id="search-button" class="material-icons">search</i>
-        </div>
-      </div>
+
+      
 
       <div id="header-container">
         <i id="minimize" class="material-icons header-button grey-text text-darken-4">remove</i>
@@ -32,20 +27,12 @@
 
       const win = remote.getCurrentWindow();
 
-      $('#screen1').show();
-      $('#screen2').hide();
-      $('#screen3').hide();
-
       $('#close').click(() => {
         win.close();
       });
       $('#minimize').click(() => {
         win.minimize();
       });
-      $('#search-button').click(() => {
-        $('#screen1').hide();
-        $('#screen2').show();
-      })
     </script>
   </body>
 </html>

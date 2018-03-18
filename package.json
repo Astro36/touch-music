@@ -9,6 +9,7 @@
   "dependencies": {
     "electron": "^1.8.3",
     "jsdom": "^11.6.2",
+    "materialize-css": "^0.100.2",
     "open-korean-text-node": "^2.0.0",
     "puppeteer": "^1.1.1",
     "request": "^2.85.0"
