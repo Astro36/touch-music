@@ -8,38 +8,8 @@
   margin: 8px;
 
   overflow: hidden;
-}
 
-#search-bar {
-  -webkit-app-region: no-drag;
-
-  width: calc(50vw - 16px);
-  height: 48px;
-
-  margin: auto;
-  margin-top: calc(50vh - 24px - 16px);
-}
-
-#search-button {
-  float: right;
-
-  line-height: 48px;
-
-  margin-right: 8px;
-}
-
-#search-input {
-  width: calc(100% - 48px);
-  height: 48px;
-
-  line-height: 48px;
-
-  position: absolute;
-
-  margin: 0px;
-  margin-left: 8px;
-
-  border: none;
+  font-family: 'NanumSquareRound';
 }
 
 #header-container {
@@ -51,10 +21,6 @@
   right: 0px;
 
   margin: 16px;
-}
-
-#scroll {
-  overflow-x: scroll;
 }
 
 .header-button {

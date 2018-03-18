@@ -1,0 +1,61 @@
+<style>
+#mind-field {
+  -webkit-app-region: no-drag;
+}
+
+.child {
+  position: absolute;
+  vertical-align: middle;
+}
+
+#main-word {
+  width: 80px;
+  height: 80px;
+
+  top: calc(50% - 40px);
+  left: calc(50% - 40px);
+}
+</style>
+<div id="mind-field">
+  <a id="main-word" class="node root child z-depth-0 btn btn-floating btn-large orange pulse">
+    단어
+  </a>
+</div>
+
+<script type="text/javascript" src="https://rawgit.com/kennethkufluk/js-mindmap/master/js-mindmap.js"></script>
+<script>
+  const field = $('#mind-field')
+
+  let list = [{name: 'test'}, {name: 'test2'}, {name: 'test3'}, {name: 'test4'}, {name: 'test5'}, {name: 'test6'}]
+  let i = 0
+  for (let item of list) {
+    const html = '<a id="item-' + item.name + '" class="child z-depth-3 waves-effect waves-light btn btn-floating btn-large blue">' + item.name + '</a>'
+    field.append(html)
+
+    let listener = i => {
+      return function () {
+        const unit = $('#root').height() / 4
+        let coord = getCoord(unit + Math.random() * (unit / 3), 60 * i + Math.random() * 30)
+
+
+        const element = $('#item-' + item.name)
+        element.offset({
+          top: $('#root').height() / 2 + coord.x,
+          left: $('#root').width() / 2 + coord.y
+        })
+      }
+    }
+
+    $(window).resize(listener(i))
+
+    listener(i)()
+    i++
+  }
+
+  function getCoord (radius, angle) {
+    let x = Math.round(radius * Math.cos(angle / 180 * Math.PI))
+    let y = Math.round(radius * Math.sin(angle / 180 * Math.PI))
+
+    return {x: x, y: y}
+  }
+</script>
