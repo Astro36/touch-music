@@ -43,7 +43,7 @@
 <script>
   let isRunning = false;
   $('#search-button').click(() => {
-    Materialize.toast('검색 중... 잠시만 기다려 주세요.', 1000)
+    Materialize.toast('검색 중... 잠시만 기다려 주세요.', 1000);
     if (!isRunning) {
       isRunning = true;
       topicWord = $('#search-input').val();

@@ -26,14 +26,14 @@
 
 <script type="text/javascript" src="./javascripts/mindmap.js"></script>
 <script type="text/javascript">
-  const field = $('#mind-field');
+  let field = $('#mind-field');
   $('#main-word').val(topicWord);
 
-  const list = similarWords.map(value => ({ name: value.text }));
-  
+  let list = similarWords.map(value => ({ name: value.text }));
+
   let i = 0;
   for (const item of list) {
-    const html = `<a id="item-${item.name}" class="child z-depth-3 waves-effect waves-light btn btn-floating btn-large blue">${item.name}</a>`;
+    const html = `<button id="item-${item.name}" class="child z-depth-3 waves-effect waves-light btn btn-floating btn-large blue">${item.name}</button>`;
     const line = `<a id="line-${item.name}" style="background-color: black;"></a>`;
     field.append(html);
     field.append(line);
@@ -43,6 +43,16 @@
       const coord = getCoord(unit / 2 + Math.random() * (unit / 6), 60 * i + Math.random() * 30);
 
       const element = $(`#item-${item.name}`);
+      element.click(() => {
+        Materialize.toast('검색 중... 잠시만 기다려 주세요.', 1000);
+        if (!isRunning) {
+          isRunning = true;
+          topicWord = $(`#item-${item.name}`).val();
+          similarWords = model.analogy({ positive: [topicWord] }, 6);
+          $('#root').load('./list.html');
+          isRunning = false;
+        }
+      });
       const line = $(`#line-${item.name}`);
       element.offset({
         top: unit + coord.x,
