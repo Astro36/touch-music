@@ -46,10 +46,13 @@
     Materialize.toast('검색 중... 잠시만 기다려 주세요.', 1000);
     if (!isRunning) {
       isRunning = true;
-      topicWord = $('#search-input').val();
-      similarWords = model.analogy({ positive: [topicWord] }, 6);
-      $('#root').load('./mindmap.html');
-      isRunning = false;
+      $('#search-button').hide();
+      setTimeout(() => {
+        topicWord = $('#search-input').val();
+        similarWords = model.analogy({ positive: [topicWord] }, 6);
+        $('#root').load('./mindmap.html');
+        isRunning = false;
+      }, 200);
     }
   });
 </script>

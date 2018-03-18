@@ -35,14 +35,17 @@
     let songList = null;
     let topicWord = '';
     let similarWords = [];
+    let isReady = false;
 
     Materialize.toast('데이터를 불러오는 중...', 1000);
 
     $(document).ready(() => {
-      model = Word2Vec.load(path.join(__dirname, '../data/word2vec.tsv'));
-      songList = SongList.fromJSONFile(path.join(__dirname, '../data/songs.json'));
-      console.log(songList)
-      $('#root').load('./search.html');
+      setTimeout(() => {
+        model = Word2Vec.load(path.join(__dirname, '../data/word2vec.tsv'));
+        songList = SongList.fromJSONFile(path.join(__dirname, '../data/songs.json'));
+        isReady = true;
+        $('#root').load('./search.html');
+      }, 200)
       $('#close').click(() => {
         win.close();
       });

@@ -11,23 +11,24 @@
 <ul id="list" class="collection with-header">
   <li class="collection-header">
     <h4>
-      <i class="material-icons" style="font-size: 2rem;">music_note</i><span class="list-title"></span></h4>
+      <i class="material-icons" style="font-size: 2rem;">music_note</i>
+      <span class="list-title"></span>
+    </h4>
   </li>
 </ul>
 <script>
   let songs = songList.findAll(topicWord).splice(0, 5);
-  (async () => {
-    $('.list-title').text(`"${topicWord}"의 음악`)
-    for (let item of songs) {
+  let findurl = async (str) => location.href = await Youtube.find(str);
+  $('.list-title').text(`"${topicWord}"의 음악`)
+  for (let item of songs) {
       let card = '<li class="collection-item">' +
         '<div>' +
         item.getTitle() + ' - ' + item.getArtist() +
-        '<a class="secondary-content" href="' + await Youtube.find(item.getArtist() + ' ' + item.getTitle()) + '">' +
+        '<a class="secondary-content" href="javascript:findurl(\'' + item.getArtist() + ' ' + item.getTitle() + '\')">' +
         '<i class="material-icons">play_arrow</i>' +
         '</a>' +
         '</div>' +
         '</li>';
-      $('#list').append(card)
-    }
-  })();
+    $('#list').append(card)
+  }
 </script>

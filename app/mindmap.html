@@ -47,10 +47,13 @@
         Materialize.toast('검색 중... 잠시만 기다려 주세요.', 1000);
         if (!isRunning) {
           isRunning = true;
-          topicWord = $(`#item-${item.name}`).val();
-          similarWords = model.analogy({ positive: [topicWord] }, 6);
-          $('#root').load('./list.html');
-          isRunning = false;
+          topicWord = item.name
+          console.log(topicWord)
+          setTimeout(() => {
+            similarWords = model.analogy({ positive: [topicWord] }, 6);
+            $('#root').load('./list.html');
+            isRunning = false;
+          }, 200);
         }
       });
       const line = $(`#line-${item.name}`);
