@@ -27,7 +27,7 @@
 <script type="text/javascript" src="./javascripts/mindmap.js"></script>
 <script type="text/javascript">
   let field = $('#mind-field');
-  $('#main-word').val(topicWord);
+  $('#main-word').text(topicWord);
 
   let list = similarWords.map(value => ({ name: value.text }));
 
@@ -66,6 +66,16 @@
     listener(i)();
     i++;
   }
+
+  $('#main-word').click(() => {
+    Materialize.toast('검색 중... 잠시만 기다려 주세요.', 1000);
+    if (!isRunning) {
+      isRunning = true;
+      similarWords = model.analogy({ positive: [topicWord] }, 6);
+      $('#root').load('./list.html');
+      isRunning = false;
+    }
+  });
 
   function setLine(element, x1, y1, x2, y2) {
     var a = x1 - x2,

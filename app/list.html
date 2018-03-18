@@ -1,36 +1,10 @@
 <style>
-  #search-bar {
+  #list {
     -webkit-app-region: no-drag;
-
-    width: calc(50vw - 16px);
-    height: 48px;
-
-    margin: auto;
-    margin-top: calc(50vh - 24px - 16px);
   }
 
-  #search-button {
-    float: right;
-
-    line-height: 48px;
-
-    margin-right: 8px;
-
-    cursor: pointer;
-  }
-
-  #search-input {
-    width: calc(100% - 48px);
-    height: 48px;
-
-    line-height: 48px;
-
-    position: absolute;
-
-    margin: 0px;
-    margin-left: 8px;
-
-    border: none;
+  .collection-item {
+    -webkit-app-region: no-drag;
   }
 </style>
 
@@ -43,12 +17,12 @@
 <script>
   let songs = songList.findAll(topicWord).splice(0, 5);
   (async () => {
-    $('.list-title').val(`"${topicWord}"의 음악`)
+    $('.list-title').text(`"${topicWord}"의 음악`)
     for (let item of songs) {
       let card = '<li class="collection-item">' +
         '<div>' +
         item.getTitle() + ' - ' + item.getArtist() +
-        '<a class="secondary-content">' +
+        '<a class="secondary-content" href="' + await Youtube.find(item.getArtist() + ' ' + item.getTitle()) + '">' +
         '<i class="material-icons">play_arrow</i>' +
         '</a>' +
         '</div>' +
