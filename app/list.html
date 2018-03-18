@@ -1,0 +1,56 @@
+<style>
+  #search-bar {
+    -webkit-app-region: no-drag;
+
+    width: calc(50vw - 16px);
+    height: 48px;
+
+    margin: auto;
+    margin-top: calc(50vh - 24px - 16px);
+  }
+
+  #search-button {
+    float: right;
+
+    line-height: 48px;
+
+    margin-right: 8px;
+
+    cursor: pointer;
+  }
+
+  #search-input {
+    width: calc(100% - 48px);
+    height: 48px;
+
+    line-height: 48px;
+
+    position: absolute;
+
+    margin: 0px;
+    margin-left: 8px;
+
+    border: none;
+  }
+</style>
+
+<ul id="list" class="collection with-header">
+  <li class="collection-header"><h4><i class="material-icons" style="font-size: 2rem;">music_note</i>노래 리스트</h4></li>
+</ul>
+<script>
+
+let songlist = [{name: 'asdf'}, {name: 'asdfasdf'}, {name: 'ahae'}, {name: '33'}, {name: '44'}]
+
+for (let item of songlist) {
+  let card = '<li class="collection-item">' +
+      '<div>' +
+        item.name +
+        '<a class="secondary-content">' +
+          '<i class="material-icons">play_arrow</i>' +
+        '</a>' +
+      '</div>' +
+    '</li>';
+
+  $('#list').append(card)
+}
+</script>
