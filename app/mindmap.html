@@ -21,16 +21,16 @@
 
 <div id="mind-field">
   <canvas id="canvas"></canvas>
-  <a id="main-word" class="child z-depth-0 btn-floating btn-large orange pulse">
-    단어
-  </a>
+  <a id="main-word" class="child z-depth-0 btn-floating btn-large orange pulse"></a>
 </div>
 
 <script type="text/javascript" src="./javascripts/mindmap.js"></script>
 <script type="text/javascript">
   const field = $('#mind-field');
+  $('#main-word').val(topicWord);
 
-  const list = [{ name: 'test' }, { name: 'test2' }, { name: 'test3' }, { name: 'test4' }, { name: 'test5' }, { name: 'test6' }];
+  const list = similarWords.map(value => ({ name: value.text }));
+  
   let i = 0;
   for (const item of list) {
     const html = `<a id="item-${item.name}" class="child z-depth-3 waves-effect waves-light btn btn-floating btn-large blue">${item.name}</a>`;
@@ -59,27 +59,27 @@
 
   function setLine(element, x1, y1, x2, y2) {
     var a = x1 - x2,
-        b = y1 - y2,
-        c = Math.sqrt(a * a + b * b);
+      b = y1 - y2,
+      c = Math.sqrt(a * a + b * b);
 
     var sx = (x1 + x2) / 2,
-        sy = (y1 + y2) / 2;
+      sy = (y1 + y2) / 2;
 
     var x = sx - c / 2,
-        y = sy;
+      y = sy;
 
     x += 32
     y += 32
 
     var alpha = Math.PI - Math.atan2(-b, a);
 
-    var styles = 'border: 1px solid black; '
-               + 'width: ' + c + 'px; '
-               + 'height: 0px; '
-               + '-webkit-transform: rotate(' + alpha + 'rad); '
-               + 'position: absolute; '
-               + 'top: ' + y + 'px; '
-               + 'left: ' + x + 'px; ';
+    var styles = 'border: 1px solid #eeeeee; '
+      + 'width: ' + c + 'px; '
+      + 'height: 0px; '
+      + '-webkit-transform: rotate(' + alpha + 'rad); '
+      + 'position: absolute; '
+      + 'top: ' + y + 'px; '
+      + 'left: ' + x + 'px; ';
     element.attr('style', styles);
   }
 

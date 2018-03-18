@@ -20,6 +20,7 @@
     <i id="minimize" class="material-icons header-button grey-text text-darken-2">remove</i>
     <i id="close" class="material-icons header-button grey-text text-darken-2">clear</i>
   </header>
+  <script type="text/javascript" src="../node_modules/hammerjs/hammer.min.js"></script>
   <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
   <script type="text/javascript">
@@ -31,11 +32,11 @@
     const model = Word2Vec.load(path.join(__dirname, '../data/word2vec.tsv'));
     const win = remote.getCurrentWindow();
 
-    let topic = '';
+    let topicWord = '';
     let similarWords = [];
 
     $(document).ready(() => {
-      $('#root').load('./mindmap.html');
+      $('#root').load('./search.html');
       $('#close').click(() => {
         win.close();
       });
