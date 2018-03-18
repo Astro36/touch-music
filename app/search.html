@@ -41,6 +41,8 @@
 
 <script>
   $('#search-button').click(() => {
-
+    topic = $('#search-input').val();
+    similarWords = model.analogy({ positive: [topic] }, 6).map(value => value.text);
+    $('#root').load('./mindmap.html');
   })
 </script>

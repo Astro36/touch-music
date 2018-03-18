@@ -26,7 +26,13 @@
     const { remote } = require('electron');
     const path = require('path');
 
+    const { Word2Vec } = require('../lib');
+
+    const model = Word2Vec.load(path.join(__dirname, '../data/word2vec.tsv'));
     const win = remote.getCurrentWindow();
+
+    let topic = '';
+    let similarWords = [];
 
     $(document).ready(() => {
       $('#root').load('./search.html');
