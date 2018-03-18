@@ -1,13 +1,9 @@
 {
   "name": "touch-music",
   "version": "1.0.0",
-  "description": "",
+  "description": "Super Easy Music Finder",
   "main": "app/main.js",
-  "directories": {
-    "lib": "lib"
-  },
   "dependencies": {
-    "electron": "^1.8.4",
     "jsdom": "^11.6.2",
     "materialize-css": "^0.100.2",
     "puppeteer": "^1.2.0",
@@ -15,21 +11,25 @@
     "tsv": "^0.2.0"
   },
   "devDependencies": {
+    "electron": "^1.8.4",
+    "electron-builder": "^20.5.1",
     "eslint": "^4.19.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.9.0"
   },
   "scripts": {
+    "dist": "electron-builder",
     "lint": "eslint app lib test",
     "lint:fix": "eslint app lib test --fix",
+    "pack": "electron-builder --dir",
     "start": "electron ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Astro36/TouchMusic.git"
   },
-  "contributors": [
-    "SJ Park <astr36@naver.com>",
+  "author": "SJ Park <astr36@naver.com>",
+  "contributorss": [
     "BJ Kim <tiger00@hanmail.net>",
     "SY Sim <simssy2205@gmail.com>"
   ],
@@ -37,5 +37,15 @@
   "bugs": {
     "url": "https://github.com/Astro36/TouchMusic/issues"
   },
-  "homepage": "https://github.com/Astro36/TouchMusic#readme"
+  "homepage": "https://github.com/Astro36/TouchMusic#readme",
+  "build": {
+    "appId": "team.creativecoding.touchmusic",
+    "productName": "Touch Music",
+    "copyright": "Copyright © 2018 창조코딩",
+    "win": {
+      "target": "portable",
+      "icon": "./app/img/ic_app.png",
+      "publisherName": "창조코딩"
+    }
+  }
 }
