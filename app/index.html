@@ -27,18 +27,21 @@
     const { remote } = require('electron');
     const path = require('path');
 
-    const { Word2Vec } = require('../lib');
+    const { SongList, Word2Vec, Youtube } = require('../lib');
 
     const win = remote.getCurrentWindow();
 
     let model = null;
+    let songList = null;
     let topicWord = '';
     let similarWords = [];
 
-    Materialize.toast('데이터를 불러오는 중...', 1000)
+    Materialize.toast('데이터를 불러오는 중...', 1000);
 
     $(document).ready(() => {
-      model = Word2Vec.load(path.join(__dirname, '../data/word2vec.tsv'))
+      model = Word2Vec.load(path.join(__dirname, '../data/word2vec.tsv'));
+      songList = SongList.fromJSONFile(path.join(__dirname, '../data/songs.json'));
+      console.log(songList)
       $('#root').load('./search.html');
       $('#close').click(() => {
         win.close();

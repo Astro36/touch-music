@@ -35,22 +35,25 @@
 </style>
 
 <ul id="list" class="collection with-header">
-  <li class="collection-header"><h4><i class="material-icons" style="font-size: 2rem;">music_note</i>음악 리스트</h4></li>
+  <li class="collection-header">
+    <h4>
+      <i class="material-icons" style="font-size: 2rem;">music_note</i><span class="list-title"></span></h4>
+  </li>
 </ul>
 <script>
-
-let songlist = [{name: 'asdf'}, {name: 'asdfasdf'}, {name: 'ahae'}, {name: '33'}, {name: '44'}]
-
-for (let item of songlist) {
-  let card = '<li class="collection-item">' +
-      '<div>' +
-        item.name +
+  let songs = songList.findAll(topicWord).splice(0, 5);
+  (async () => {
+    $('.list-title').val(`"${topicWord}"의 음악`)
+    for (let item of songs) {
+      let card = '<li class="collection-item">' +
+        '<div>' +
+        item.getTitle() + ' - ' + item.getArtist() +
         '<a class="secondary-content">' +
-          '<i class="material-icons">play_arrow</i>' +
+        '<i class="material-icons">play_arrow</i>' +
         '</a>' +
-      '</div>' +
-    '</li>';
-
-  $('#list').append(card)
-}
+        '</div>' +
+        '</li>';
+      $('#list').append(card)
+    }
+  })();
 </script>
