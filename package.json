@@ -4,7 +4,9 @@
   "description": "Super Easy Music Finder",
   "main": "app/main.js",
   "dependencies": {
+    "jquery": "^3.3.1",
     "jsdom": "^11.6.2",
+    "material-design-icons": "^3.0.1",
     "materialize-css": "^0.100.2",
     "puppeteer": "^1.2.0",
     "request": "^2.85.0",
@@ -18,6 +20,7 @@
     "eslint-plugin-import": "^2.9.0"
   },
   "scripts": {
+    "dev": "electron . --debug",
     "dist": "electron-builder",
     "lint": "eslint app lib test",
     "lint:fix": "eslint app lib test --fix",
@@ -28,8 +31,9 @@
     "type": "git",
     "url": "git+https://github.com/Astro36/TouchMusic.git"
   },
-  "author": "SJ Park <astr36@naver.com>",
+  "author": "창조코딩",
   "contributorss": [
+    "SJ Park <astr36@naver.com>",
     "BJ Kim <tiger00@hanmail.net>",
     "SY Sim <simssy2205@gmail.com>"
   ],
@@ -44,7 +48,7 @@
     "copyright": "Copyright © 2018 창조코딩",
     "win": {
       "target": "portable",
-      "icon": "./app/img/ic_app.png",
+      "icon": "./app/images/ic_app.png",
       "publisherName": "창조코딩"
     }
   }

@@ -1,13 +1,13 @@
 const electron = require('electron');
 
-const path = require('path')
-const url = require('url')
+const path = require('path');
+const url = require('url');
 
-const app = electron.app
-const BrowserWindow = electron.BrowserWindow
+const { app } = electron;
+const { BrowserWindow } = electron;
 
-let win = null
-let buildWindow = () => {
+let win = null;
+const buildWindow = () => {
   win = new BrowserWindow({
     frame: false,
     transparent: true,
@@ -24,15 +24,15 @@ let buildWindow = () => {
   }));
 
   win.on('resize', () => {
-    size = win.getSize()[0];
+    const [size] = win.getSize();
     win.setSize(size, size);
-  })
-}
+  });
+};
 
 app.on('ready', buildWindow);
 app.on('activate', () => {
   if (win == null) {
-    buildWindow()
+    buildWindow();
   }
 });
 

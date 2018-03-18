@@ -1,33 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TouchMusic</title>
 
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css">
-    <link type="text/css" rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css" rel="stylesheet" href="./css/style.css"/>
-  </head>
-  <body>
-    <div id="root" class="card-panel row z-depth-2 grey lighten-5">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TouchMusic</title>
+  <link type="text/css" rel="stylesheet" href="../node_modules/material-design-icons/iconfont/material-icons.css">
+  <link type="text/css" rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"
+  />
+  <link type="text/css" rel="stylesheet" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css">
+  <link type="text/css" rel="stylesheet" href="./styles/style.css" />
+</head>
 
-    </div>
+<body>
+  <div id="root" class="card-panel row z-depth-2 grey lighten-5">
+    <header class="grey lighten-2" id="header-container">
+      <i id="minimize" class="material-icons header-button grey-text text-darken-4">remove</i>
+      <i id="close" class="material-icons header-button grey-text text-darken-4">clear</i>
+    </header>
+  </div>
+  <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script type="text/javascript">
+    const { remote } = require('electron');
+    const path = require('path');
 
-      <div id="header-container">
-        <i id="minimize" class="material-icons header-button grey-text text-darken-4">remove</i>
-        <i id="close" class="material-icons header-button grey-text text-darken-4">clear</i>
-      </div>
-    </div>
+    const win = remote.getCurrentWindow();
 
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script type="text/javascript" src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
-    <script type="text/javascript" src="./js/main.js"></script>
-    <script>
-      $(document).ready(() => {
-        showScreen ('./html/mindmap_screen.html')
+    $(document).ready(() => {
+      $('#root').load('./mindmap.html');
+      $('#close').click(() => {
+        win.close();
       });
-    </script>
-  </body>
+      $('#minimize').click(() => {
+        win.minimize();
+      });
+    });
+  </script>
+</body>
+
 </html>
