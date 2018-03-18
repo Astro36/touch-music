@@ -37,12 +37,19 @@
 <div id="search-bar" class="card input-field z-depth-2">
   <input id="search-input" type="text" class="remove-input-styled"></input>
   <i id="search-button" class="material-icons">search</i>
+  <span class="search-notice"></span>
 </div>
 
 <script>
+  let isRunning = false;
   $('#search-button').click(() => {
-    topic = $('#search-input').val();
-    similarWords = model.analogy({ positive: [topic] }, 6).map(value => value.text);
-    $('#root').load('./mindmap.html');
-  })
+    Materialize.toast('검색 중... 잠시만 기다려 주세요.', 1000)
+    if (!isRunning) {
+      isRunning = true;
+      topicWord = $('#search-input').val();
+      similarWords = model.analogy({ positive: [topicWord] }, 6);
+      $('#root').load('./mindmap.html');
+      isRunning = false;
+    }
+  });
 </script>
