@@ -15,6 +15,7 @@ const buildWindow = () => {
     minHeight: 300,
     width: 500,
     height: 500,
+    maximizable: false,
   });
 
   win.loadURL(url.format({
