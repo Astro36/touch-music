@@ -1,5 +1,7 @@
 # TouchMusic
 
+![TouchMusic](./app/images/img_touch_music_orange.png)
+
 > Super Easy Music Finder
 
 ## License
