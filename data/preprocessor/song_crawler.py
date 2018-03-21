@@ -34,17 +34,26 @@ def get_song_detail(song_id):
             'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linu…) Gecko/20100101 Firefox/59.0'})
         html = req.text
         soup = BeautifulSoup(html, 'html.parser')
+        element_album_art_url = soup.select_one('.thumb > a > img')
         element_artist = soup.select_one('.info > .artist > .artist_name')
         element_lyric = soup.select_one('.wrap_lyric > .lyric')
+        element_meta = soup.select('.meta > .list > dd')
         element_title = soup.select_one('.info > .song_name')
         if element_artist is not None \
                 and element_lyric is not None \
+                and element_meta is not None \
                 and element_title is not None:
+            album = element_meta[0].get_text().strip()
+            album_art_url = element_album_art_url.get('src').strip()
             artist = element_artist.get('title').strip()
+            gerne = element_meta[2].get_text().strip()
             lyric = element_lyric.get_text('\n', strip=True)
             title = element_title.get_text().replace(u'곡명', '').replace(u'19금', '').strip()
             return {
+                'album': album,
+                'album_art_url': album_art_url,
                 'artist': artist,
+                'gerne': gerne,
                 'lyric': lyric,
                 'title': title
             }
@@ -97,7 +106,7 @@ if __name__ == '__main__':
             start_date.strftime("%Y%m%d"),
             end_date.strftime("%Y%m%d"),
         )
-    urls = map(get_url, range(0, 365 * 5, 7))
+    urls = map(get_url, range(0, 3, 7))
     pool = multiprocessing.Pool(multiprocessing.cpu_count())
     song_ids = list(set(sum(pool.map(get_song_ids, urls), [])))
     songs = sorted(filter(None, pool.map(get_song_detail, song_ids)),
