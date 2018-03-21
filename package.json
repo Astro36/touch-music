@@ -4,14 +4,12 @@
   "description": "Super Easy Music Finder",
   "main": "app/main.js",
   "dependencies": {
-    "electron-pug": "^1.5.1",
     "hammerjs": "^2.0.8",
     "jquery": "^3.3.1",
     "jsdom": "^11.6.2",
     "material-design-icons": "^3.0.1",
     "materialize-css": "^0.100.2",
     "puppeteer": "^1.2.0",
-    "request": "^2.85.0",
     "tsv": "^0.2.0"
   },
   "devDependencies": {
