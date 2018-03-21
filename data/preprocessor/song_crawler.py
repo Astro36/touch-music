@@ -106,7 +106,7 @@ if __name__ == '__main__':
             start_date.strftime("%Y%m%d"),
             end_date.strftime("%Y%m%d"),
         )
-    urls = map(get_url, range(0, 3, 7))
+    urls = map(get_url, range(0, 365 * 5, 7))
     pool = multiprocessing.Pool(multiprocessing.cpu_count())
     song_ids = list(set(sum(pool.map(get_song_ids, urls), [])))
     songs = sorted(filter(None, pool.map(get_song_detail, song_ids)),
