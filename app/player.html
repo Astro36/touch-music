@@ -14,6 +14,10 @@
 
   <link type="text/css" rel="stylesheet" href="./styles/style.css" />
   <style>
+    #root {
+      -webkit-app-region: drag;
+    }
+    
     #header-container {
       -webkit-app-region: drag;
       
@@ -28,17 +32,25 @@
     }
 
     #video-frame {
-      -webkit-app-region: drag;
+      -webkit-app-region: no-drag;
     }
   </style>
 </head>
 
 <body style="overflow: hidden;">
-  <div id="root" class="card-panel z-depth-2 grey lighten-5">
-    <div id="video-frame">
-
+  <div id="root" class="card z-depth-2 grey lighten-5">
+    <div class="card-image">
+      <div id="video-frame">
+    
+      </div>
+      <span id="title" class="card-title">Title</span>
+      <a class="btn-floating halfway-fab waves-effect waves-light red">
+        <i class="material-icons">airplay</i>
+      </a> 
     </div>
-
+    <div id="singer" class="card-content">
+      내가만듬
+    </div>
 
     <header id="header-container">
       <i id="close" class="material-icons header-button grey-text text-darken-2">clear</i>

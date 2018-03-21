@@ -32,14 +32,18 @@ app.on('window-all-closed', () => {
   }
 });
 
-exports.showMusicPlayer = () => {
-  musicWindow = new Window({
-    width: 150,
-    height: 200,
-    minWidth: 100,
-    maxWidth: 300,
-    alwaysOnTop: true
-    }, 9/16, 64);
+exports.showMusicPlayer = (youtubeID, title, singer) => {
+  exports.youtubeID = youtubeID
+  exports.title = title
+  exports.singer = singer
 
+  musicWindow = new Window({
+    width: 300,
+    height: 250,
+    minWidth: 200,
+    maxWidth: 900,
+    alwaysOnTop: true
+    }, 9/16, 80);
+  
   musicWindow.load('player.html');
 }
