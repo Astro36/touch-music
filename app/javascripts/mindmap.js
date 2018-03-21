@@ -1,7 +1,7 @@
 function initMindMap(list = similarWords.map(value => ({ name: value.text }))) {
   let field = $('#mind-field');
   field.empty();
-  
+
   $('#main-word').text(topicWord);
 
   let i = 0;
@@ -11,7 +11,7 @@ function initMindMap(list = similarWords.map(value => ({ name: value.text }))) {
     field.append(html);
     field.append(line);
 
-    const listener = i => function () {
+    const listener = (i, item) => function () {
       const unit = $('#mind-field').width() / 2;
       const coord = getCoord(unit / 2 + Math.random() * (unit / 6), 60 * i + Math.random() * 30);
 
@@ -21,9 +21,13 @@ function initMindMap(list = similarWords.map(value => ({ name: value.text }))) {
         
         topicWord = item.name
         console.log(topicWord)
+
+        $('#content').empty();
+        $('#content').load('./list.html');
         setTimeout(() => {
           similarWords = model.analogy({ positive: [topicWord] }, 6);
-          $('#root').load('./list.html');
+          
+          initList();
         }, 200);
       });
 
@@ -35,21 +39,23 @@ function initMindMap(list = similarWords.map(value => ({ name: value.text }))) {
       setLine(line, unit, unit, unit + coord.x, unit + coord.y)
     };
 
-    $(window).resize(listener(i));
+    $(window).resize(listener(i, item));
 
-    listener(i)();
+    listener(i, item)();
     i++;
   }
 }
 
 $('#main-word').click(() => {
+  $('#content').empty();
+  $('#content').load('./list.html');
+
   Materialize.toast('검색 중... 잠시만 기다려 주세요.', 1000);
-  if (!isRunning) {
-    isRunning = true;
+  setTimeout(() => {
     similarWords = model.analogy({ positive: [topicWord] }, 6);
-    $('#root').load('./list.html');
-    isRunning = false;
-  }
+    
+    initList();
+  }, 200);
 });
 
 function setLine(element, x1, y1, x2, y2) {

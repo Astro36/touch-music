@@ -7,7 +7,7 @@ const { app } = electron;
 const { BrowserWindow } = electron;
 
 class Window {
-  constructor(option) {
+  constructor(option, ratio, bias) {
     this.window = new BrowserWindow(Object.assign({
       frame: false,
       transparent: true,
@@ -16,8 +16,9 @@ class Window {
 
     this.window.on('resize', () => {
       const [size] = this.window.getSize();
+      const height = Math.floor(size * ratio + bias);
 
-      this.window.setSize(size, size + 96);
+      this.window.setSize(size, height);
     });
   }
 

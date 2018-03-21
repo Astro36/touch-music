@@ -3,6 +3,7 @@ const path = require('path');
 
 const { SongList, Word2Vec, Youtube } = require('../lib');
 
+const mainJS = remote.require('./main.js')
 const win = remote.getCurrentWindow();
 
 let model = null;
@@ -31,6 +32,9 @@ $(document).ready(() => {
 });
 
 $('#search-button').click(() => {
+  mainJS.showMusicPlayer();
+  $('#content').load('./mindmap.html');
+  /*
   Materialize.toast('검색 중... 잠시만 기다려 주세요.', 1000);
   
   setTimeout(() => {
@@ -38,5 +42,5 @@ $('#search-button').click(() => {
     similarWords = model.analogy({ positive: [topicWord] }, 6);
 
     initMindMap();
-  }, 200);
+  }, 200);*/
 });

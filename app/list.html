@@ -1,39 +1,45 @@
 <style>
+  #scroll {
+    width: auto;
+    height: 100%;
 
-#scroll {
-  width: 100%;
-  height: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
 
-  overflow-x: scroll;
-  overflow-y: hidden;
+    padding: 32px;
+  }
 
-  padding: 32px;
-}
-
-.album {
-  width: 218px;
-  height: 218px;
-}
-
+  .album {
+    width: 218px;
+    height: 218px;
+  }
+  .album-image {
+    width: 218px;
+    height: 218px;
+  }
 </style>
 
-<div id="scroll">
+<i class="material-icons" style="font-size: 2rem;">music_note</i>
+<span class="">test</span>
+<table id="scroll">
   
-</div>
+</table>
 
 <script>
-  let songs = songList.findAll(topicWord).splice(0, 5);
-  let findurl = async (str) => location.href = await Youtube.find(str);
-  
-  for (let item of songs) {
-    let card = '<div id="album1" class="card album">' +
-      '<div class="card-image">' +
-      '<img src="./images/ic_app.png">' +
-      '<div class="card-title">' +
-      item.getTitle() + ' - ' + item.getArtist() +
-      '</div>' +
-      '</div>' +
-      '</div>';
+  function initList() {
+    let songs = songList.findAll(topicWord).splice(0, 5);
+    let findurl = async (str) => location.href = await Youtube.find(str);
+
+    for (let item of songs) {
+      let card = '<td id="album1" class="card album">' +
+        '<div class="card-image">' +
+        '<img src="./images/ic_app.png" class="album-image">' +
+        '<div class="card-title">' +
+        item.getTitle() + ' - ' + item.getArtist() +
+        '</div>' +
+        '</div>' +
+        '</td>';
 
       /*let card = '<li class="collection-item">' +
         '<div>' +
@@ -43,6 +49,7 @@
         '</a>' +
         '</div>' +
         '</li>';*/
-    $('#list').append(card)
+      $('#scroll').append(card)
+    }
   }
 </script>

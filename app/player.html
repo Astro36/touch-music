@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MusicPlayer</title>
+
+  <link type="text/css" rel="stylesheet" href="../node_modules/material-design-icons/iconfont/material-icons.css">
+  <link type="text/css" rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"
+  />
+  <link type="text/css" rel="stylesheet" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css">
+
+  <link type="text/css" rel="stylesheet" href="./styles/style.css" />
+  <style>
+    #header-container {
+      -webkit-app-region: drag;
+      
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      
+      width: auto;
+      height: 48px;
+
+      padding: 6px;
+    }
+
+    #video-frame {
+      -webkit-app-region: drag;
+    }
+  </style>
+</head>
+
+<body style="overflow: hidden;">
+  <div id="root" class="card-panel z-depth-2 grey lighten-5">
+    <div id="video-frame">
+
+    </div>
+
+
+    <header id="header-container">
+      <i id="close" class="material-icons header-button grey-text text-darken-2">clear</i>
+    </header>
+  </div>
+
+  <script type="text/javascript" src="../node_modules/hammerjs/hammer.min.js"></script>
+  <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
+  <script type="text/javascript" src="./javascripts/player.js"></script>
+</body>
+
+</html>

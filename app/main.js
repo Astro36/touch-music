@@ -6,6 +6,7 @@ const { app } = electron;
 const { BrowserWindow } = electron;
 
 let mainWindow = null
+let musicWindow = null
 
 const buildWindow = () => {
   mainWindow = new Window({
@@ -13,7 +14,7 @@ const buildWindow = () => {
     height: 500,
     minWidth: 200,
     minHeight: 200,
-  });
+  }, 1, 96);
 
   mainWindow.load('index.html');
 }
@@ -30,3 +31,15 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
+
+exports.showMusicPlayer = () => {
+  musicWindow = new Window({
+    width: 150,
+    height: 200,
+    minWidth: 100,
+    maxWidth: 300,
+    alwaysOnTop: true
+    }, 9/16, 64);
+
+  musicWindow.load('player.html');
+}
