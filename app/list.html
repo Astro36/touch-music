@@ -20,10 +20,17 @@
   }
 </style>
 
-<i class="material-icons" style="font-size: 2rem;">music_note</i>
-<span class="">test</span>
-<table id="scroll">
-  
+<table style="margin: 16px;">
+  <thead>
+    <tr>
+        <th>Album</th>
+        <th>Title</th>
+        <th>Artist</th>
+    </tr>
+  </thead>
+
+  <tbody id="song-list">
+  </tbody>
 </table>
 
 <script>
@@ -32,15 +39,6 @@
     let findurl = async (str) => location.href = await Youtube.find(str);
 
     for (let item of songs) {
-      let card = '<td id="album1" class="card album">' +
-        '<div class="card-image">' +
-        '<img src="./images/ic_app.png" class="album-image">' +
-        '<div class="card-title">' +
-        item.getTitle() + ' - ' + item.getArtist() +
-        '</div>' +
-        '</div>' +
-        '</td>';
-
       /*let card = '<li class="collection-item">' +
         '<div>' +
         item.getTitle() + ' - ' + item.getArtist() +
@@ -49,7 +47,15 @@
         '</a>' +
         '</div>' +
         '</li>';*/
-      $('#scroll').append(card)
+      const artist = item.getArtist();
+      const title = item.getTitle();
+      $('#song-list').append(
+        `<tr>
+          <td><img src="./images/ic_app.png" width="48px" height="48px"></td>
+          <td><a href="javascript:findurl('${artist + ' ' + title}');">${title}</a></td>
+          <td>${artist}</td>
+        </tr>`
+      )
     }
   }
 </script>
