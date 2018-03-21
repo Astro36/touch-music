@@ -4,56 +4,38 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <title>TouchMusic</title>
+
   <link type="text/css" rel="stylesheet" href="../node_modules/material-design-icons/iconfont/material-icons.css">
-  <link type="text/css" rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"
-  />
+  <link type="text/css" rel="stylesheet" href="../node_modules/materialize-css/dist/css/materialize.min.css" media="screen,projection"/>
   <link type="text/css" rel="stylesheet" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css">
+  
   <link type="text/css" rel="stylesheet" href="./styles/style.css" />
+  <link type="text/css" rel="stylesheet" href="./styles/searchbar.css" />
 </head>
 
-<body>
-  <div id="root" class="card-panel row z-depth-2 grey lighten-5">
+<body style="overflow: hidden;">
+  <div id="root" class="card-panel z-depth-2 grey lighten-5">
+    <div id="search-bar" class="card input-field z-depth-2">
+      <header id="header-container">
+        <i id="minimize" class="material-icons header-button grey-text text-darken-2">remove</i>
+        <i id="close" class="material-icons header-button grey-text text-darken-2">clear</i>
+      </header>
+      <div>
+        <input id="search-input" type="text" class="remove-input-styled"></input>
+        <i id="search-button" class="material-icons">search</i>
+      </div>
+    </div>
+    <div id="content">
+
+    </div>
   </div>
 
-  <header id="header-container">
-    <i id="minimize" class="material-icons header-button grey-text text-darken-2">remove</i>
-    <i id="close" class="material-icons header-button grey-text text-darken-2">clear</i>
-  </header>
   <script type="text/javascript" src="../node_modules/hammerjs/hammer.min.js"></script>
   <script type="text/javascript" src="../node_modules/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="../node_modules/materialize-css/dist/js/materialize.min.js"></script>
-  <script type="text/javascript">
-    const { remote } = require('electron');
-    const path = require('path');
-
-    const { SongList, Word2Vec, Youtube } = require('../lib');
-
-    const win = remote.getCurrentWindow();
-
-    let model = null;
-    let songList = null;
-    let topicWord = '';
-    let similarWords = [];
-    let isReady = false;
-
-    Materialize.toast('데이터를 불러오는 중...', 1000);
-
-    $(document).ready(() => {
-      setTimeout(() => {
-        model = Word2Vec.load(path.join(__dirname, '../data/word2vec.tsv'));
-        songList = SongList.fromJSONFile(path.join(__dirname, '../data/songs.json'));
-        isReady = true;
-        $('#root').load('./search.html');
-      }, 200)
-      $('#close').click(() => {
-        win.close();
-      });
-      $('#minimize').click(() => {
-        win.minimize();
-      });
-    });
-  </script>
+  <script type="text/javascript" src="./javascripts/main.js"></script>
 </body>
 
 </html>

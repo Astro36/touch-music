@@ -1,29 +1,36 @@
 #root {
-  -webkit-app-region: drag;
   -webkit-user-select: none;
-
+  
   width: calc(100vw - 16px);
   height: calc(100vh - 16px);
 
   margin: 8px;
+  padding: 0px;
 
   overflow: hidden;
 
   font-family: 'NanumSquareRound';
 }
 
+#content {
+  width: 100%;
+  height: calc(100% - 96px - 8px);
+
+  overflow: hidden;
+}
+
 #header-container {
-  -webkit-app-region: no-drag;
+  -webkit-app-region: drag;
 
-  position: absolute;
+  width: auto;
+  height: 48px;
 
-  top: 0px;
-  right: 0px;
-
-  margin: 16px;
+  padding: 12px;
 }
 
 .header-button {
+  -webkit-app-region: no-drag;
+
   transform: scale(1.0, 1.0);
   cursor: pointer;
 

@@ -1,0 +1,27 @@
+#mind-field {
+  -webkit-app-region: no-drag;
+
+  position: absolute;
+
+  width: 100%;
+  height: calc(100% - 96px);
+
+  margin: 0px;
+}
+
+.child {
+  -webkit-app-region: no-drag;
+
+  position: absolute;
+  vertical-align: middle;
+}
+
+#main-word {
+  width: 80px;
+  height: 80px;
+
+  padding: 12px;
+
+  top: calc(50% - 40px + 48px);
+  left: calc(50% - 40px);
+}

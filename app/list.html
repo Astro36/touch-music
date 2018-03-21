@@ -1,34 +1,48 @@
 <style>
-  #list {
-    -webkit-app-region: no-drag;
-  }
 
-  .collection-item {
-    -webkit-app-region: no-drag;
-  }
+#scroll {
+  width: 100%;
+  height: 100%;
+
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  padding: 32px;
+}
+
+.album {
+  width: 218px;
+  height: 218px;
+}
+
 </style>
 
-<ul id="list" class="collection with-header">
-  <li class="collection-header">
-    <h4>
-      <i class="material-icons" style="font-size: 2rem;">music_note</i>
-      <span class="list-title"></span>
-    </h4>
-  </li>
-</ul>
+<div id="scroll">
+  
+</div>
+
 <script>
   let songs = songList.findAll(topicWord).splice(0, 5);
   let findurl = async (str) => location.href = await Youtube.find(str);
-  $('.list-title').text(`"${topicWord}"의 음악`)
+  
   for (let item of songs) {
-      let card = '<li class="collection-item">' +
+    let card = '<div id="album1" class="card album">' +
+      '<div class="card-image">' +
+      '<img src="./images/ic_app.png">' +
+      '<div class="card-title">' +
+      item.getTitle() + ' - ' + item.getArtist() +
+      '</div>' +
+      '</div>' +
+      '</div>';
+
+      /*let card = '<li class="collection-item">' +
         '<div>' +
         item.getTitle() + ' - ' + item.getArtist() +
         '<a class="secondary-content" href="javascript:findurl(\'' + item.getArtist() + ' ' + item.getTitle() + '\')">' +
         '<i class="material-icons">play_arrow</i>' +
         '</a>' +
         '</div>' +
-        '</li>';
+        '</li>';*/
     $('#list').append(card)
   }
 </script>
