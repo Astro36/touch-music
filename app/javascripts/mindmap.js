@@ -1,5 +1,5 @@
 function initMindMap(list = similarWords.map(value => ({ name: value.text }))) {
-  let field = $('#mind-field');
+  const field = $('#mind-field');
   field.empty();
 
   $('#main-word').text(topicWord);
@@ -18,15 +18,15 @@ function initMindMap(list = similarWords.map(value => ({ name: value.text }))) {
       const element = $(`#item-${item.name}`);
       element.click(() => {
         Materialize.toast('검색 중... 잠시만 기다려 주세요.', 1000);
-        
-        topicWord = item.name
-        console.log(topicWord)
+
+        topicWord = item.name;
+        console.log(topicWord);
 
         $('#content').empty();
         $('#content').load('./list.html');
         setTimeout(() => {
           similarWords = model.analogy({ positive: [topicWord] }, 6);
-          
+
           initList();
         }, 200);
       });
@@ -36,7 +36,7 @@ function initMindMap(list = similarWords.map(value => ({ name: value.text }))) {
         top: unit + coord.y + 96,
         left: unit + coord.x - 32,
       });
-      setLine(line, unit, unit, unit + coord.x, unit + coord.y)
+      setLine(line, unit, unit, unit + coord.x, unit + coord.y);
     };
 
     $(window).resize(listener(i, item));
@@ -53,34 +53,34 @@ $('#main-word').click(() => {
   Materialize.toast('검색 중... 잠시만 기다려 주세요.', 1000);
   setTimeout(() => {
     similarWords = model.analogy({ positive: [topicWord] }, 6);
-    
+
     initList();
   }, 200);
 });
 
 function setLine(element, x1, y1, x2, y2) {
-  var a = x1 - x2,
+  let a = x1 - x2,
     b = y1 - y2,
     c = Math.sqrt(a * a + b * b);
 
-  var sx = (x1 + x2) / 2,
+  let sx = (x1 + x2) / 2,
     sy = (y1 + y2) / 2;
 
-  var x = sx - c / 2,
+  let x = sx - c / 2,
     y = sy;
 
-  x += 0
-  y += 12
+  x += 0;
+  y += 12;
 
-  var alpha = Math.PI - Math.atan2(-b, a);
+  const alpha = Math.PI - Math.atan2(-b, a);
 
-  var styles = 'border: 1px solid #eeeeee; '
-    + 'width: ' + c + 'px; '
+  const styles = `${'border: 1px solid #eeeeee; '
+    + 'width: '}${c}px; `
     + 'height: 0px; '
-    + '-webkit-transform: rotate(' + alpha + 'rad); '
+    + `-webkit-transform: rotate(${alpha}rad); `
     + 'position: absolute; '
-    + 'top: ' + y + 'px; '
-    + 'left: ' + x + 'px; ';
+    + `top: ${y}px; `
+    + `left: ${x}px; `;
   element.attr('style', styles);
 }
 

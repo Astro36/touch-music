@@ -3,7 +3,7 @@ const path = require('path');
 
 const { SongList, Word2Vec, Youtube } = require('../lib');
 
-const mainJS = remote.require('./main.js')
+const mainJS = remote.require('./main.js');
 const win = remote.getCurrentWindow();
 
 let model = null;
@@ -32,15 +32,13 @@ $(document).ready(() => {
 });
 
 $('#search-button').click(() => {
-  mainJS.showMusicPlayer('uw_HR9jIJww', '노래이름', '가수');
   $('#content').load('./mindmap.html');
-  /*
   Materialize.toast('검색 중... 잠시만 기다려 주세요.', 1000);
-  
+
   setTimeout(() => {
     topicWord = $('#search-input').val();
     similarWords = model.analogy({ positive: [topicWord] }, 6);
 
     initMindMap();
-  }, 200);*/
+  }, 200);
 });
