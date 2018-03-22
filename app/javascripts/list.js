@@ -1,5 +1,5 @@
 function initList() {
-  let songs = songList.findAll(topicWord).splice(0, 5);
+  let songs = songList.findAll(topicWord);
 
   for (let item of songs) {
     const artist = item.getArtist();
