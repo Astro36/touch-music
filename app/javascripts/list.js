@@ -4,10 +4,11 @@ function initList() {
   for (let item of songs) {
     const artist = item.getArtist();
     const title = item.getTitle();
+    const album = item.getAlbumArtUrl();
 
     $('#song-list').append(
       `<tr>
-        <td><img src="./images/ic_app.png" width="48px" height="48px"></td>
+        <td><img src="${album}" width="48px" height="48px"></td>
         <td class="album"><a onclick="openMusic(\'${title}\', \'${artist}\')">${title}</a></td>
         <td>${artist}</td>
       </tr>`

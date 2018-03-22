@@ -33,7 +33,7 @@ function initMindMap(list = similarWords.map(value => ({ name: value.text }))) {
 
       const line = $(`#line-${item.name}`);
       element.offset({
-        top: unit + coord.y + 96,
+        top: unit + coord.y + 72,
         left: unit + coord.x - 32,
       });
       setLine(line, unit, unit, unit + coord.x, unit + coord.y);
@@ -69,8 +69,8 @@ function setLine(element, x1, y1, x2, y2) {
   let x = sx - c / 2,
     y = sy;
 
-  x += 0;
-  y += 12;
+  x -= 12;
+  y += 0;
 
   const alpha = Math.PI - Math.atan2(-b, a);
 

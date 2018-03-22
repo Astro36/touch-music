@@ -15,10 +15,12 @@ class Window {
     }, option));
 
     this.window.on('resize', () => {
-      const [size] = this.window.getSize();
-      const height = Math.floor(size * ratio + bias);
-
-      this.window.setSize(size, height);
+      setTimeout(() => {
+        const [size] = this.window.getSize();
+        const height = Math.floor(size * ratio + bias);
+  
+        this.window.setSize(size, height);
+      }, 1)
     });
   }
 
