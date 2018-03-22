@@ -20,6 +20,7 @@ function initMindMap(list = similarWords.map(value => ({ name: value.text }))) {
         Materialize.toast('검색 중... 잠시만 기다려 주세요.', 1000);
 
         topicWord = item.name;
+        $('#search-input').val(topicWord);
         console.log(topicWord);
 
         $('#content').empty();
@@ -52,6 +53,7 @@ $('#main-word').click(() => {
 
   Materialize.toast('검색 중... 잠시만 기다려 주세요.', 1000);
   setTimeout(() => {
+    $('#search-input').val(topicWord);
     similarWords = model.analogy({ positive: [topicWord] }, 6);
 
     initList();
