@@ -10,8 +10,8 @@ let musicWindow = null;
 
 const buildWindow = () => {
   mainWindow = new Window({
-    width: 500,
-    height: 500,
+    width: 400,
+    height: 496,
     minWidth: 200,
     minHeight: 200,
   }, 1, 96);

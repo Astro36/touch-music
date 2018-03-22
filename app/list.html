@@ -1,26 +1,18 @@
 <style>
-  #scroll {
-    width: auto;
-    height: 100%;
-
-    overflow-x: auto;
-    overflow-y: hidden;
-    white-space: nowrap;
-
-    padding: 32px;
+  #list {
+    margin: 16px;
+    width: calc(100vw - 48px);
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
 
   .album {
     width: 218px;
     height: 218px;
   }
-  .album-image {
-    width: 218px;
-    height: 218px;
-  }
 </style>
 
-<table style="margin: 16px;">
+<table id="list">
   <thead>
     <tr>
         <th>Album</th>
@@ -33,29 +25,4 @@
   </tbody>
 </table>
 
-<script>
-  function initList() {
-    let songs = songList.findAll(topicWord).splice(0, 5);
-    let findurl = async (str) => location.href = await Youtube.find(str);
-
-    for (let item of songs) {
-      /*let card = '<li class="collection-item">' +
-        '<div>' +
-        item.getTitle() + ' - ' + item.getArtist() +
-        '<a class="secondary-content" href="javascript:findurl(\'' + item.getArtist() + ' ' + item.getTitle() + '\')">' +
-        '<i class="material-icons">play_arrow</i>' +
-        '</a>' +
-        '</div>' +
-        '</li>';*/
-      const artist = item.getArtist();
-      const title = item.getTitle();
-      $('#song-list').append(
-        `<tr>
-          <td><img src="./images/ic_app.png" width="48px" height="48px"></td>
-          <td><a href="javascript:findurl('${artist + ' ' + title}');">${title}</a></td>
-          <td>${artist}</td>
-        </tr>`
-      )
-    }
-  }
-</script>
+<script type="text/javascript" src="./javascripts/list.js"></script>

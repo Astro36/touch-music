@@ -16,7 +16,7 @@
   width: 100%;
   height: calc(100% - 96px - 8px);
 
-  overflow: hidden;
+  overflow-y: auto;
 }
 
 #header-container {
@@ -39,4 +39,20 @@
 
 .header-button:hover {
   transform: scale(1.5, 1.5);
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #BDBDBD; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9E9E9E; 
 }
