@@ -16,7 +16,6 @@ $(document).ready(() => {
 
     shell.openExternal(url);
   });
-
   $('#close').click(() => {
     win.close();
   });

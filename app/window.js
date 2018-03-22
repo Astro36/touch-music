@@ -12,6 +12,7 @@ class Window {
       frame: false,
       transparent: true,
       maximizable: false,
+      icon: __dirname + '/images/ic_app.ico'
     }, option));
 
     this.window.on('resize', () => {
