@@ -37,6 +37,10 @@
   transition: transform 0.25s;
 }
 
+#header-button-container {
+  float: right;
+}
+
 .header-button:hover {
   transform: scale(1.5, 1.5);
 }

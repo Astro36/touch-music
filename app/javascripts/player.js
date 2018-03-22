@@ -1,4 +1,4 @@
-const { remote } = require('electron');
+const { remote, shell } = require('electron');
 
 const mainJS = remote.require('./main.js');
 const win = remote.getCurrentWindow();
@@ -10,6 +10,12 @@ $(document).ready(() => {
   $('#video-frame').append(YOUTUBE_EMBED_HEADER + mainJS.youtubeID + YOUTUBE_EMBED_FOOTER);
   $('#title').text(mainJS.title);
   $('#singer').text(mainJS.singer);
+  
+  $('#go-youtube').click(() => {
+    const url = 'https://www.youtube.com/watch?v=' + mainJS.youtubeID;
+
+    shell.openExternal(url);
+  });
 
   $('#close').click(() => {
     win.close();

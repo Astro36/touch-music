@@ -8,7 +8,7 @@ function initList() {
     $('#song-list').append(
       `<tr>
         <td><img src="./images/ic_app.png" width="48px" height="48px"></td>
-        <td><a onclick="openMusic(\'${title}\', \'${artist}\')">${title}</a></td>
+        <td class="album"><a onclick="openMusic(\'${title}\', \'${artist}\')">${title}</a></td>
         <td>${artist}</td>
       </tr>`
     )
