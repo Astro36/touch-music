@@ -3,6 +3,7 @@ function initMindMap(list = similarWords.map(value => ({ name: value.text }))) {
   field.empty();
 
   $('#main-word').text(topicWord);
+  particlesJS.load('content', './assets/particles.json');
 
   let i = 0;
   for (const item of list) {

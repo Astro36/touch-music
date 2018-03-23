@@ -16,6 +16,7 @@ Materialize.toast('데이터를 불러오는 중...', 1000);
 
 $(document).ready(() => {
   $('#content').load('./mindmap.html');
+  particlesJS.load('content', './assets/particles.json');
 
   setTimeout(() => {
     model = Word2Vec.load(path.join(__dirname, '../data/word2vec.tsv'));
